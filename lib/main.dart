@@ -1,61 +1,65 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart'; // Add this line.
 
-void main() => runApp(MaterialApp(home: MyApp()));
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    //final wordPair = WordPair.random(); // Add this line.
+    return MaterialApp(
+      title: 'Startup Name Generator',
+      home: RandomWords(),
+    );
+
+    //return app;
+  }
+}
+
+class RandomWords extends StatefulWidget {
+  const RandomWords({Key? key}) : super(key: key);
+
+  @override
+  _RandomWordsState createState() => _RandomWordsState();
+}
+
+class _RandomWordsState extends State<RandomWords> {
+  final _suggestions = <WordPair>[]; // NEW
+  final _biggerFont = const TextStyle(fontSize: 18); // NEW
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Add from here...
       appBar: AppBar(
-        title: Text(
-          'my first app',
-          style: TextStyle(
-            fontSize: 20.0,
-            letterSpacing: 2.0,
-            fontFamily: 'IndieFlower',
-            color: Colors.red,
-          ),
-        ),
-        centerTitle: true,
+        title: Text('Startup Name Generator'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text('welcome'),
-              FlatButton(
-                onPressed: () {},
-                child: Text('click'),
-                color: Colors.amber,
-              ),
-              Container(color: Colors.cyan, child: Text('inside a container')),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text('welcome'),
-              FlatButton(
-                onPressed: () {},
-                child: Text('click'),
-                color: Colors.amber,
-              ),
-              Container(color: Colors.cyan, child: Text('inside a container')),
-            ],
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blueAccent,
-        child: Text('press'),
-        onPressed: () {},
+      body: _buildSuggestions(),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    return ListView.builder(
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (BuildContext _context, int i) {
+          if (i.isOdd) {
+            return Divider();
+          }
+          final int index = i ~/ 2;
+          if (index >= _suggestions.length) {
+            // ...then generate 10 more and add them to the
+            // suggestions list.
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
+          return _buildRow(_suggestions[index]);
+        });
+  }
+
+  Widget _buildRow(WordPair pair) {
+    return ListTile(
+      title: Text(
+        pair.asPascalCase,
+        style: _biggerFont,
       ),
     );
   }
