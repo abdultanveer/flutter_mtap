@@ -24,12 +24,16 @@ class MyApp extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Center(
-            child: RaisedButton.icon(
-                onPressed: (){},
-                icon: Icon(Icons.airport_shuttle),
-                label: Text('mail me'))
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Text('welcome'),
+            FlatButton(onPressed: (){}, child: Text('click'),color: Colors.amber,),
+            Container(color: Colors.cyan, child: Text('inside a container')),
+
+          ],
         ),
+
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blueAccent,
           child: Text('press'),
