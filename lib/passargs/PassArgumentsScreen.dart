@@ -11,7 +11,7 @@ class PassArgumentsScreen extends StatelessWidget {
   // parameters. It does not extract the arguments from
   // the ModalRoute.
   //
-  // The arguments are extracted by the onGenerateRoute
+  // The arguments are extracted by the onGenerateRoute  --- //getintent
   // function provided to the MaterialApp widget.
   const PassArgumentsScreen({
     Key? key,

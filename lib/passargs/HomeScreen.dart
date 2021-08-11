@@ -26,10 +26,10 @@ class HomeScreen extends StatelessWidget {
                 // navigate to a named route and
                 // provide the arguments as an optional
                 // parameter.
-                Navigator.pushNamed(
+                Navigator.pushNamed(                //startactivity
                   context,
-                  ExtractArgumentsScreen.routeName,
-                  arguments: ScreenArguments(
+                  ExtractArgumentsScreen.routeName, //url
+                  arguments: ScreenArguments(       //data
                     'first title --Extract Arguments Screen',
                     'first message ---This message is extracted in the build method.',
                   ),
