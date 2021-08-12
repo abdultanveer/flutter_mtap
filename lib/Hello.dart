@@ -1,13 +1,23 @@
-void main() {
-  for (int i = 0; i < 5; i++) {
-    print('hello ${i + 1}');
-  }
-  var result = fibonacci(20);
-  print(result);
+Future<String> createOrderMessage() async {
 
-}
-int fibonacci(int n) {
-  if (n == 0 || n == 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
+  print('first instruction --createOrderMessage');
+  var order = await fetchUserOrder();
+  print('last instruction --createOrderMessage');
+  return 'Your order is: $order';
 }
 
+Future<String> fetchUserOrder() {
+  // Imagine that this function is
+// more complex and slow.
+  print('first instruction --fetchUserOrder');
+
+   return Future.delayed(
+    const Duration(seconds: 2),
+        () => 'Large Latte',
+  );
+}
+
+Future<void> main() async {
+  print('Fetching user order...');
+  print(await createOrderMessage());
+}
