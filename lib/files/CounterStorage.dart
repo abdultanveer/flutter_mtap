@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class CounterStorage {
   //path to the directory
@@ -25,8 +27,21 @@ class CounterStorage {
     return 0;
   }
 
-  Future<File> writeCounter(int contents) async{
+  Future<File> writeCounter(int contents) async {
     final file = await _localFile;
     return file.writeAsString('$contents');
+  }
+
+  void writeCounterSp(int contents) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('counter', contents);
+  }
+
+  Future<int> readCounterSp() async {
+    final prefs = await SharedPreferences.getInstance();
+
+// Try reading data from the counter key. If it doesn't exist, return 0.
+    final counter = prefs.getInt('counter') ?? 0;
+    return counter;
   }
 }

@@ -16,7 +16,7 @@ class _FilesDemoState extends State<FilesDemo> {
   void initState() {
     super.initState();
     widget.counterStorage
-        .readCounter() //it might take some time to read the contents of the file
+        .readCounterSp() //it might take some time to read the contents of the file
         .then((int value) {
       setState(() {
         _counter = value;
@@ -28,7 +28,8 @@ class _FilesDemoState extends State<FilesDemo> {
     setState(() {
       _counter++;
     });
-    widget.counterStorage.writeCounter(_counter);
+    //widget.counterStorage.writeCounter(_counter);
+    widget.counterStorage.writeCounterSp(_counter);
   }
 
   @override
