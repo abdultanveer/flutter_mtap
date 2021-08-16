@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'DeleteServer.dart';
-import 'Album.dart';
+import '../../data/remote/DeleteServer.dart';
+import '../../data/Album.dart';
 import 'package:http/http.dart' as http;
 
 

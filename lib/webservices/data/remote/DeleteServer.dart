@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'Album.dart';
+import '../Album.dart';
 import 'dart:convert';
 
 void main() {
