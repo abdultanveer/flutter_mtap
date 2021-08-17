@@ -5,29 +5,29 @@ class PostOffice implements Subject{
   List<Passport>? allMail = [];
   List? observers = [];
 
-  /*PostOffice()
-  {
-    allMail = new List<Passport>();
-    observers = new ArrayList<>();
-  }*/
 
   @override
   void Notify() {
-    // TODO: implement Notify
-  }
+    for (int i = 0; i < observers!.length; i++)
+      observers!.elementAt(i).update(this);  }
 
   @override
   void register(Observer o) {
-    // TODO: implement register
+    observers!.add(o);
   }
 
   @override
   void unRegister(Observer o) {
-    // TODO: implement unRegister
+    observers!.remove(o);
   }
 
    List<Passport>? getState()
   {
     return allMail;
+  }
+
+   void addMail(Passport m){
+    allMail!.add(m);
+    Notify();
   }
 }
